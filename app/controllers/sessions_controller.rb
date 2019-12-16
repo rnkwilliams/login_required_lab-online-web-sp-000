@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     if !session[:name].present?
       session.delete :name
     end
-      redirect_to '/'
+      redirect_to 'login'
     end
   end
   
