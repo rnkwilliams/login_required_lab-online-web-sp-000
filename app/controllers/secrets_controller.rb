@@ -1,22 +1,13 @@
 class SecretsController < ApplicationController
-  before_action :current user
-  
-  def new
+ before_action :require_login
+
+  def show
   end
 
-  def create
-    if params[:name].present?
-      session[:name] = params[:name]
-      redirect_to '/'
-    else
+  private
+  def require_login
+    unless session.include? :name
       redirect_to :login
     end
-  end
-
-  def destroy
-    if session[:name].present?
-      session.delete :name
-    end
-    redirect_to :login
   end
 end
